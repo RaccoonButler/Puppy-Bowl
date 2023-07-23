@@ -2,47 +2,66 @@ const playerContainer = document.getElementById('all-players-container');
 const newPlayerFormContainer = document.getElementById('new-player-form');
 
 // Add your cohort name to the cohortName variable below, replacing the 'COHORT-NAME' placeholder
-const cohortName = '2306-FTB-ET-WEB-FT';
-// Use the APIURL variable for fetch requests
-const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/`;
-
-/**
- * It fetches all players from the API and returns them
- * @returns An array of objects.
- */
 const fetchAllPlayers = async () => {
-    try {
+  try {
+    const response = await fetch(APIURL + 'players');
+    const data = await response.json();
+    return data.data.players; // Extract the players data from the response
+  } catch (err) {
+    console.error('Uh oh, trouble fetching players!', err);
+  }
+};
 
-    } catch (err) {
-        console.error('Uh oh, trouble fetching players!', err);
-    }
+const togglePlayerDetails = (playerCard) => {
+  const detailsBtn = playerCard.querySelector('.details-btn');
+  const breedInfo = playerCard.querySelector('.breed-info');
+  const statusInfo = playerCard.querySelector('.status-info');
+
+  detailsBtn.addEventListener('click', () => {
+    breedInfo.classList.toggle('hidden');
+    statusInfo.classList.toggle('hidden');
+  });
 };
 
 const fetchSinglePlayer = async (playerId) => {
-    try {
-
-    } catch (err) {
-        console.error(`Oh no, trouble fetching player #${playerId}!`, err);
-    }
+  try {
+    const response = await fetch(APIURL + `players/${playerId}`);
+    const data = await response.json();
+    showPlayerDetailsModal(data.data);
+  } catch (err) {
+    console.error(`Oh no, trouble fetching player #${playerId}!`, err);
+  }
 };
 
 const addNewPlayer = async (playerObj) => {
-    try {
-
-    } catch (err) {
-        console.error('Oops, something went wrong with adding that player!', err);
-    }
+  try {
+    const response = await fetch(APIURL + 'players', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(playerObj),
+    });
+    const data = await response.json();
+    console.log('Player added successfully:', data.data);
+  } catch (err) {
+    console.error('Oops, something went wrong with adding that player!', err);
+  }
 };
 
 const removePlayer = async (playerId) => {
-    try {
-
-    } catch (err) {
-        console.error(
-            `Whoops, trouble removing player #${playerId} from the roster!`,
-            err
-        );
-    }
+  try {
+    const response = await fetch(APIURL + `players/${playerId}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    console.log('Player removed from roster:', data.data);
+    // Fetch all players again and re-render the player list to reflect the changes
+    const players = await fetchAllPlayers();
+    renderAllPlayers(players);
+  } catch (err) {
+    console.error(`Whoops, trouble removing player #${playerId} from the roster!`, err);
+  }
 };
 
 /**
