@@ -170,4 +170,8 @@ const init = async () => {
     renderAllPlayers(players);
     renderNewPlayerForm();
   } catch (err) {
-    console.error('Error initializing
+    console.error('Error initializing the app:', err);
+  }
+};
+
+init();
