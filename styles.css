@@ -1,5 +1,121 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+body {
+  background-color: #f8f8f8;
+  position: absolute;
+  display: inline-flex;
+  background-image: url("https://wallpapers.com/images/hd/dog-bone-background-24votycq1io1k3l4.jpg");
+  background-repeat: repeat;
+  background-size: 200px
+}
+
+#all-players-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: 150px;
+}
+
+/* Add styles for the player card */
+.player-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.player-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.player-card h3 {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #ff9d00;
+  text-align: center;
+}
+
+.player-card p {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #ffbf3e;
+  text-align: center;
+}
+
+/* Add styles for the new player form */
+#new-player-form {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+#new-player-form h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ab7e6d;
+}
+
+#new-player-form h5 {
+  font-size: 10px;
+  color: #b8b0a0;
+  line-height: 2;
+  margin-top: 10px;
+}
+
+#new-player-form input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#new-player-form button {
+  background-color: #b08373;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#new-player-form button:hover {
+  background-color: #19e1ac;
+}
+
+/* Add styles for the "See Details" and "Remove from Roster" buttons inside the player card */
+.details-btn,
+.remove-btn {
+  background-color: #ffb300;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 15px;
+}
+
+.details-btn:hover,
+.remove-btn:hover {
+  background-color: #19e1ac;
+}
+
+/* CSS to hide elements with the "hidden" class */
+.hidden {
+  display: none;
 }
